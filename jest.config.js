@@ -8,5 +8,7 @@ module.exports = {
     "\\.(css|less|scss|sass)$": "<rootDir>/styles/__mocks__/styleMock.js",
     "^@pages/(.*)$": "<rootDir>/pages/$1",
     "^@components/(.*)$": "<rootDir>/components/$1",
+    "^@public/(.*)$": "<rootDir>/public/$1",
+    "^@helpers/(.*)$": "<rootDir>/helpers/$1",
   },
 };

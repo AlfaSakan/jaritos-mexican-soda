@@ -1,12 +1,11 @@
-import { NextPage } from "next";
 import Image from "next/image";
 import React from "react";
 
-const Footer: NextPage = () => {
+const SidebarCart = () => {
   return (
-    <div className="bg-white/[0.04] py-[10px] w-full backdrop-blur-xl sm:hidden">
-      <div className="flex items-center justify-between w-28 mx-auto">
-        <div className="p-3 bg-gradient-to-tl from-transparent to-white/20 rounded-md cursor-pointer">
+    <div className=" hidden absolute right-0 bg-white/[0.04] px-5 top-0 h-full sm:flex z-0">
+      <div className="flex flex-col h-28 my-auto justify-between">
+        <div className="p-2 bg-gradient-to-tl from-transparent to-white/20 rounded-md cursor-pointer">
           <Image
             src={"/CartShop.svg"}
             alt="cart shop"
@@ -15,7 +14,7 @@ const Footer: NextPage = () => {
             color="#ffffff"
           />
         </div>
-        <div className="p-3 bg-gradient-to-tl from-transparent to-white/20 rounded-md cursor-pointer">
+        <div className="p-2 bg-gradient-to-tl from-transparent to-white/20 rounded-md cursor-pointer">
           <Image
             src="/Love.svg"
             alt="Love"
@@ -29,4 +28,4 @@ const Footer: NextPage = () => {
   );
 };
 
-export default Footer;
+export default SidebarCart;

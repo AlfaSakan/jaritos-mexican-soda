@@ -28,9 +28,10 @@ const LabelInput: NextPage<Props> = ({
         type={type}
         id={label}
         name={label}
-        className="border-fun-green border-2 rounded-md h-12 pl-3"
+        className="border-fun-green border-2 rounded-md h-12 pl-3 font-adventPro font-bold text-fun-green"
         value={value}
         onChange={onChange}
+        placeholder={label}
       />
     </div>
   );

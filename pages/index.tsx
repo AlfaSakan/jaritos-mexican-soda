@@ -4,7 +4,9 @@ import FormSignIn from "@components/FormSignIn";
 import FormSignUp from "@components/FormSignUp";
 import Header from "@components/Header";
 import { NextPage } from "next";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import { regexEmail, regexPassword } from "@helpers/regex";
+import colors from "@helpers/colors";
 
 const Home: NextPage = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -12,6 +14,30 @@ const Home: NextPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isBtnActive, setIsBtnActive] = useState(false);
+  const [textTitle, setTextTitle] = useState("Sign In");
+
+  useEffect(() => {
+    if (!regexEmail.test(email) || !regexPassword.test(password)) {
+      setIsBtnActive(false);
+    } else {
+      setIsBtnActive(true);
+    }
+    if (
+      !isSignIn &&
+      (!regexPassword.test(confirmPassword) || password !== confirmPassword)
+    ) {
+      setIsBtnActive(false);
+    }
+  }, [email, password, confirmPassword, isSignIn]);
+
+  useEffect(() => {
+    if (isSignIn) {
+      setTextTitle("Sign In");
+    } else {
+      setTextTitle("Sign Up");
+    }
+  }, [isSignIn]);
 
   const emailHandler = (e: ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
@@ -35,6 +61,7 @@ const Home: NextPage = () => {
     setLoading(true);
     setEmail("");
     setPassword("");
+    setConfirmPassword("");
     setLoading(false);
   };
 
@@ -46,14 +73,20 @@ const Home: NextPage = () => {
             pattern="bg-carra-marble"
             textColor="text-fun-green"
             burgerColor="#006B33"
+            btnColor={isSignIn ? colors.bgFunGreen : undefined}
+            btnTextColor={isSignIn ? colors.txtWhite : colors.txtFunGreen}
+            btnColor2={!isSignIn ? colors.bgFunGreen : "bg-transparent"}
+            btnTextColor2={!isSignIn ? colors.txtWhite : colors.txtFunGreen}
+            onClickSignIn={footerButtonHandler("in")}
+            onClickSignUp={footerButtonHandler("up")}
           />
-          <div className="flex flex-col px-8">
+          <div className="flex flex-col mx-auto px-8 sm:max-w-md">
             <h1
               className={`font-adventPro font-bold text-fun-green text-4xl mx-auto ${
                 isSignIn ? "mt-28" : "mt-14"
               } mb-[5.625rem]`}
             >
-              Sign In
+              {textTitle}
             </h1>
             {isSignIn ? (
               <FormSignIn
@@ -75,10 +108,12 @@ const Home: NextPage = () => {
             <Button
               textColor="text-white"
               btnColor="bg-fun-green"
-              text="Sign in"
+              text={textTitle}
               opacity="bg-opacity-100"
               onPress={submitHandler}
               loading={loading}
+              isActive={isBtnActive}
+              id="Submit Sign In"
             />
           </div>
           <FooterSignIn

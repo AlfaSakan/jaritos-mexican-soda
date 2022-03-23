@@ -5,14 +5,20 @@ import { useState } from "react";
 import Headers from "@components/Header";
 import Button from "@components/Button";
 import DescriptionProduct from "@components/DescriptionProduct";
+import Footer from "@components/Footer";
+import SidebarCart from "@components/SidebarCart";
 
 import jamaicaFresh from "@public/jamaicaNewFresh.png";
 import mexicanGuava from "@public/mexicanGuavaParticle.png";
 import tropical from "@public/tropical.png";
 import waterMelon from "@public/watermelon.png";
-import Footer from "@components/Footer";
+import Instagram from "@public/Instagram";
 
-// import { drinks } from "dummyData/drinksData";
+import colors from "@helpers/colors";
+import Facebook from "@public/facebook";
+import Twitter from "@public/Twitter";
+import FooterProducts from "@components/FooterProducts";
+import FooterDetail from "@components/FooterDetail";
 
 const drinks = [
   {
@@ -25,6 +31,7 @@ const drinks = [
     bodyPattern: "bg-jamaicaPattern",
     btnColor: "bg-brite-gold",
     textColor: "text-french-rasberry",
+    smTextColor: "sm:text-french-rasberry",
   },
   {
     name: "Mexican Guava Particle",
@@ -36,6 +43,7 @@ const drinks = [
     bodyPattern: "bg-mexicanPattern",
     btnColor: "bg-algerian-coral",
     textColor: "text-plastic-lips",
+    smTextColor: "sm:text-plastic-lips",
   },
   {
     name: "Tropical Pineapple",
@@ -47,6 +55,7 @@ const drinks = [
     bodyPattern: "bg-tropicalPattern",
     btnColor: "bg-emerald-green",
     textColor: "text-grass-daisy",
+    smTextColor: "sm:text-grass-daisy",
   },
   {
     name: "Watermelon Coolness",
@@ -58,6 +67,7 @@ const drinks = [
     bodyPattern: "bg-watermelonPattern",
     btnColor: "bg-lime-new",
     textColor: "text-chaotic-red",
+    smTextColor: "sm:text-chaotic-red",
   },
 ];
 
@@ -85,16 +95,32 @@ const Products: NextPage = () => {
       setItemIndex((prev) => prev + 1);
       return;
     }
+
+    if (value === "increment" && itemIndex === drinks.length - 1) {
+      setItemIndex(0);
+      return;
+    }
+
+    if (value === "decrement" && itemIndex === 0) {
+      setItemIndex(drinks.length - 1);
+      return;
+    }
   };
 
   const onPressBuy = () => () => {
     setNumber(1);
   };
 
+  console.log(drinks[itemIndex].textColor);
+
   return (
     <main>
-      <div className={`${drinks[itemIndex].bodyPattern}`}>
-        <Headers pattern={drinks[itemIndex].headerPattern} />
+      <div className={`${drinks[itemIndex].bodyPattern} relative`}>
+        <Headers
+          btnTextColor={colors.txtWhite}
+          pattern={drinks[itemIndex].headerPattern}
+          btnColor={`bg-white/[0.04] py-[10px] w-full backdrop-blur-xl`}
+        />
         <div className="px-16 pt-20 pb-[120px]">
           <div className="flex flex-row items-center">
             <p className="font-adventPro text-3xl text-white tracking-widest">
@@ -167,11 +193,15 @@ const Products: NextPage = () => {
             textColor={drinks[itemIndex].textColor}
             onPress={onPressBuy()}
           />
-          <p className="font-adventPro font-bold text-white tracking-wider text-2xl mb-12 cursor-pointer">
-            Details
-          </p>
           <Footer />
         </div>
+        <FooterDetail
+          bgColor={drinks[itemIndex].color}
+          btnColor={drinks[itemIndex].btnColor}
+          smTextColor={drinks[itemIndex].smTextColor}
+        />
+        <SidebarCart />
+        <FooterProducts index={itemIndex} />
       </div>
     </main>
   );

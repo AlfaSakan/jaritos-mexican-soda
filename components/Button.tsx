@@ -8,6 +8,8 @@ interface Props {
   opacity?: string;
   text?: string;
   loading?: boolean;
+  isActive?: boolean;
+  id?: string;
 }
 
 const Button: NextPage<Props> = ({
@@ -17,10 +19,16 @@ const Button: NextPage<Props> = ({
   opacity = "bg-opacity-70",
   text = "Buy Now",
   loading = false,
+  isActive = true,
+  id,
 }) => {
   if (loading) {
     return (
-      <button className={`bg-gray-400 py-[22px] px-14 rounded-xl mb-[30px]`}>
+      <button
+        data-testid={id}
+        className={`bg-gray-400 py-[22px] px-14 rounded-xl mb-[30px]`}
+        disabled={loading}
+      >
         <p
           className={`font-adventPro font-semibold ${textColor} text-2xl tracking-widest`}
         >
@@ -32,8 +40,12 @@ const Button: NextPage<Props> = ({
 
   return (
     <button
+      data-testid={id}
       onClick={onPress}
-      className={`${btnColor} ${opacity} py-[22px] px-14 rounded-xl mb-[30px]`}
+      className={`${btnColor} ${
+        !isActive ? "bg-opacity-60" : opacity
+      } py-[22px] px-14 rounded-xl mb-[30px] duration-500 ease-in-out`}
+      disabled={!isActive}
     >
       <p
         className={`font-adventPro font-semibold ${textColor} text-2xl tracking-widest`}
