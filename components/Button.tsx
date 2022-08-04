@@ -26,7 +26,7 @@ const Button: NextPage<Props> = ({
     return (
       <button
         data-testid={id}
-        className={`bg-gray-400 py-[22px] px-14 rounded-xl mb-[30px]`}
+        className={`bg-gray-400 py-[1.375rem] px-14 rounded-xl mb-[1.875rem]`}
         disabled={loading}
       >
         <p
@@ -44,7 +44,7 @@ const Button: NextPage<Props> = ({
       onClick={onPress}
       className={`${btnColor} ${
         !isActive ? "bg-opacity-60" : opacity
-      } py-[22px] px-14 rounded-xl mb-[30px] duration-500 ease-in-out`}
+      } py-[1.375rem] px-14 rounded-xl mb-[1.875rem] duration-500 ease-in-out`}
       disabled={!isActive}
     >
       <p

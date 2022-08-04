@@ -1,5 +1,7 @@
 import { NextPage } from "next";
+import Link, { LinkProps } from "next/link";
 import React from "react";
+import { Url } from "url";
 
 interface Props {
   btnColor?: string;

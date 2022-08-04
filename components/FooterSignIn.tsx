@@ -5,7 +5,7 @@ import ButtonSignIn from "./ButtonSignIn";
 import colors from "@helpers/colors";
 import Instagram from "@public/Instagram";
 import Twitter from "@public/Twitter";
-import Facebook from "@public/facebook";
+import Facebook from "@public/Facebook";
 
 interface Props {
   isSignIn?: boolean;

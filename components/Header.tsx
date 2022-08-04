@@ -1,6 +1,6 @@
 import HamburgerMenu from "@public/HamburgerMenu";
 import { NextPage } from "next";
-import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import ButtonSignIn from "./ButtonSignIn";
 
@@ -37,7 +37,9 @@ const Header: NextPage<Props> = ({
     >
       <div onClick={onPressLeft}>
         <h1 className={`font-adventPro text-3xl ${textColor} cursor-pointer`}>
-          Jarritos
+          <Link href={"/"}>
+            <a>Jarritos</a>
+          </Link>
         </h1>
       </div>
       <div className="sm:flex justify-between items-center w-56 hidden">

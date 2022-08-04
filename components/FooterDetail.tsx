@@ -1,4 +1,4 @@
-import Facebook from "@public/facebook";
+import Facebook from "@public/Facebook";
 import Instagram from "@public/Instagram";
 import Twitter from "@public/Twitter";
 import { NextPage } from "next";
@@ -13,7 +13,7 @@ interface Props {
 const FooterDetail: NextPage<Props> = ({ bgColor, btnColor, smTextColor }) => {
   return (
     <div
-      className={`hidden items-end justify-between w-full pl-20 z-10 relative ${bgColor} lg:flex`}
+      className={`hidden items-end justify-between w-full pl-20 z-20 relative ${bgColor} lg:flex`}
     >
       <div className="flex pb-9">
         <div className="bg-gradient-to-tl from-transparent to-white/20 rounded-md cursor-pointer h-[2.438rem] w-[2.438rem] items-center justify-center flex mr-[1.625rem]">
